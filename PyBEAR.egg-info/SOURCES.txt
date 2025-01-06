@@ -1,0 +1,15 @@
+LICENSE
+README.md
+setup.py
+PyBEAR.egg-info/PKG-INFO
+PyBEAR.egg-info/SOURCES.txt
+PyBEAR.egg-info/dependency_links.txt
+PyBEAR.egg-info/requires.txt
+PyBEAR.egg-info/top_level.txt
+pybear/CONTROL_TABLE.py
+pybear/CRC.py
+pybear/Manager.py
+pybear/Packet.py
+pybear/TIMING_TABLE.py
+pybear/__init__.py
+pybear/__main__.py

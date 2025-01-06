@@ -10,7 +10,7 @@ __status__ = "Production"
 from pybear import Manager
 
 # Define port and baud rate
-bear_port = "COM7"
+bear_port = "/dev/ttyUSB0"
 bear_baudrate = 8000000
 # Define ID search range
 id_range = range(0, 9)

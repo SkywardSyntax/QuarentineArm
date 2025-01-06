@@ -13,7 +13,7 @@ import time
 
 BEAR_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-port = 'COM11'
+port = '/dev/ttyUSB0'
 baud = 8000000
 pbm = Manager.BEAR(port=port, baudrate=baud, bulk_timeout=0.002)
 

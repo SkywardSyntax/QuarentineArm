@@ -76,10 +76,11 @@ if not error:
     # Let's move to the target angle smoothly
     num = 100                  # split it into 100 pieces
     delta_angle = angle / num  # angle for each time
-    for i in range(num):
-        goal_pos = home + delta_angle * (i + 1)
-        bear.set_goal_position((m_id, goal_pos))
-        time.sleep(0.01)
+   # for i in range(num):
+    #    goal_pos = home + delta_angle * (i + 1)
+     #   bear.set_goal_position((m_id, goal_pos))
+      #  time.sleep(0.01)
+    bear.set_goal_position((m_id, angle))
 
     print('BEAR arrived target angle!')
     time.sleep(2)

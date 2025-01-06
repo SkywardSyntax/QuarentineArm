@@ -13,20 +13,37 @@ from pybear import Manager
 import sys
 import select
 import os
+import time
 
 error = False
-bear = Manager.BEAR(port="COM9", baudrate=8000000)
+bear_port = "/dev/ttyUSB0"
+bear_baudrate = 8000000
+bear = Manager.BEAR(port=bear_port, baudrate=bear_baudrate,timeout=1, bulk_timeout=1)
 
-m_id = 1  # Set motor ID
+
+m_id = 7  # Set motor ID
+
+
 
 p_gain = 5  # Set P gain as the K of spring
 d_gain = 2  # Set D gain as damper strength
 iq_max = 1.5  # Max iq
 
-if not(bear.ping(m_id)[0]):
-    # BEAR is offline
-    print("BEAR is offline. Check power and communication.")
-    error = True
+m_id = 1  # Start scanning from ID 1
+error = True  # Initialize error flag
+
+while m_id < 10:
+    data = bear.ping(m_id)[0]
+    if data:
+        print("Found BEAR with ID %d." % m_id)
+        print(data)
+        error = False  # BEAR found
+        break
+    m_id += 1
+
+if error:
+    print("No BEAR found. Please check the connection.")
+    sys.exit()
 
 if not error:
     # BEAR is online
@@ -54,8 +71,11 @@ if not error:
     # Put bar in middle
     # usr = input("Please move the bar to upright position, then press enter to continue.")
     # Get home position
-    home = bear.get_present_position(m_id)[0][0][0]
+    print("Getting home position.")
+    #home = bear.get_present_position(m_id)[0][0][0]
+    home = 0
     print("Demo started.")
+    #Get user input ()
     run = True
     while run:
         os.system('cls' if os.name == 'nt' else 'clear')

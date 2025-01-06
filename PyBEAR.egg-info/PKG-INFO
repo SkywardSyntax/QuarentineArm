@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: PyBEAR
+Version: 0.1.2
+Summary: BEAR SDK python package
+Home-page: https://github.com/Westwood-Robotics/PyBEAR
+Author: Westwood Robotics Corporation
+Author-email: info@westwoodrobotics.io
+License: Apache License, Version 2.0
+License-File: LICENSE

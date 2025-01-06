@@ -14,7 +14,7 @@ __status__ = "Prototype"
 from pybear import Manager
 
 # Define port and baud rate
-bear_port = "COM11"
+bear_port = "/dev/ttyUSB0"
 bear_baudrate = 8000000
 # Define ID search range
 id_range = range(0, 253)
