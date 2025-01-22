@@ -7,3 +7,4 @@ Author: Westwood Robotics Corporation
 Author-email: info@westwoodrobotics.io
 License: Apache License, Version 2.0
 License-File: LICENSE
+Requires-Dist: pyserial
