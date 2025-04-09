@@ -1,4 +1,4 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.2
 Name: PyBEAR
 Version: 0.1.2
 Summary: BEAR SDK python package
@@ -8,3 +8,9 @@ Author-email: info@westwoodrobotics.io
 License: Apache License, Version 2.0
 License-File: LICENSE
 Requires-Dist: pyserial
+Dynamic: author
+Dynamic: author-email
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: summary

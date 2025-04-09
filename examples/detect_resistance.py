@@ -4,8 +4,8 @@ import sys
 from collections import deque
 import numpy as np
 
-# Initialize BEAR
-bear = Manager.BEAR(port="/dev/ttyUSB0", baudrate=8000000)
+# Initialize BEAR with proper timeout values
+bear = Manager.BEAR(port="/dev/ttyUSB0", baudrate=8000000, timeout=0.1, bulk_timeout=0.2)
 
 # Find BEAR
 error = True
@@ -54,17 +54,23 @@ try:
         current_threshold = iq_asymptote_threshold + (iq_starting_threshold - iq_asymptote_threshold) * np.exp(-decay_rate * elapsed_time)
         
         # Get current torque current
-        iq = bear.get_present_iq(m_id)[0][0][0]
-        iq_window.append(iq)
+        iq_response = bear.get_present_iq(m_id)
+        if iq_response[0] is not None:
+            iq = iq_response[0][0][0]
+            iq_window.append(iq)
+        
+        # Add a small delay between read operations to avoid overloading the device
+        time.sleep(0.01)
         
         # Calculate rolling average
         if len(iq_window) == window_size:
             iq_avg = sum(iq_window) / window_size
         else:
-            iq_avg = iq
+            iq_avg = iq if 'iq' in locals() else 0
         
-        # Get current velocity
-        current_velocity = bear.get_present_velocity(m_id)[0][0][0]
+        # Get current velocity with error handling
+        velocity_response = bear.get_present_velocity(m_id)
+        current_velocity = velocity_response[0][0][0] if velocity_response[0] is not None else 0
         
         print(f"IQ: {iq:.2f} A, IQ Avg: {iq_avg:.2f} A, Threshold: {current_threshold:.2f} A, Velocity: {current_velocity:.2f} rad/s")
         
